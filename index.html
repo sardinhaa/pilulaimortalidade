@@ -54,16 +54,18 @@
             margin-top: 1rem;
         }
 
-    #youtube-video {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        #youtube-video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
 
-    #youtube-video iframe {
-      width: 80%; 
-      height: 80%; 
-    }
+        #youtube-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 25%;
+            height: 25%;
         }
     </style>
 </head>
