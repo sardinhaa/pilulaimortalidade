@@ -43,21 +43,24 @@
         }
 
         main p {
-            line-height: 1.5;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
         }
 
-        aside {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
-            margin-top: 1rem;
+        main ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        main li {
+            margin-bottom: 1rem;
         }
 
         #youtube-video {
+            margin-top: 2rem;
+            width: 100%;
+            padding-bottom: 56.25%;
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
         }
 
         #youtube-video iframe {
@@ -66,6 +69,43 @@
             left: 0;
             width: 100%;
             height: 100%;
+        }
+
+        aside {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .subscription {
+            background-color: #333;
+            color: #fff;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .subscription form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .subscription input {
+            width: 200px;
+            padding: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .subscription button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .subscription button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
@@ -96,33 +136,28 @@
             <!-- YouTube video will be inserted here -->
         </div>
     </main>
-    <aside>
+<aside>
         <p>&copy; 2021 - Pílula da Imortalidade - Todos os direitos reservados</p>
     </aside>
+    <section class="subscription">
+        <h2>Inscreva-se para receber novidades e ofertas especiais</h2>
+        <form>
+            <input type="email" placeholder="Seu e-mail">
+            <button type="submit">Inscrever-se</button>
+        </form>
+    </section>
     <script>
-        // Get the YouTube video container
-        const youtubeVideoContainer = document.getElementById('youtube-video');
+        // Add YouTube video to the webpage
+        function loadYouTubeVideo() {
+            const youTubeVideo = document.createElement('iframe');
+            youTubeVideo.width = '100%';
+            youTubeVideo.height = '100%';
+            youTubeVideo.src = 'https://www.youtube.com/embed/D4OCJL1vHys'; // Replace with your YouTube video ID
+            document.getElementById('youtube-video').appendChild(youTubeVideo);
+        }
 
-        // Create the YouTube iframe
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.youtube.com/embed/D4OCJL1vHys?autoplay=1';
-        iframe.frameBorder = '0';
-        iframe.allowFullScreen = true;
-
-        // Add the iframe to the container
-        youtubeVideoContainer.appendChild(iframe);
-
-        // Add an event listener to play the video when scrolled to
-        window.addEventListener('scroll', () => {
-            const videoTop = youtubeVideoContainer.offsetTop;
-            const videoHeight = youtubeVideoContainer.offsetHeight;
-            const windowHeight = window.innerHeight;
-const scrollPosition = window.scrollY;
-
-            if (scrollPosition >= videoTop && scrollPosition <= videoTop + videoHeight - windowHeight) {
-                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo"}', '*');
-            }
-        });
+        // Call the function to load the YouTube video
+        loadYouTubeVideo();
     </script>
 </body>
 </html>
