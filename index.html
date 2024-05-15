@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Pílula da Imortalidade - Viva Mais Jovem, Mais Tempo</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pílula da Imortalidade - Viva Mais Jovem, Mais Tempo</title>
     <style>
         /* Import Poppins font from Google Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
         /* Global Styles */
         * {
@@ -19,21 +19,18 @@
             font-family: 'Poppins', sans-serif;
             background-color: #f4f4f4;
             text-align: center;
-            cursor: url('cursor.png'), auto;
         }
 
-        /* Header Styles */
-        header {
+        nav {
             background-color: #333;
             color: #fff;
             padding: 1rem;
         }
 
-        header h1 {
+        nav h1 {
             margin: 0;
         }
 
-        /* Main Styles */
         main {
             padding: 2rem;
             background-color: #fff;
@@ -49,38 +46,81 @@
             line-height: 1.5;
         }
 
-        /* Footer Styles */
-        footer {
+        aside {
             background-color: #333;
             color: #fff;
             padding: 1rem;
             text-align: center;
             margin-top: 1rem;
         }
+
+        #youtube-video {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+        }
+
+        #youtube-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
-    <header>
+    <nav>
         <h1>Pílula da Imortalidade - Viva Mais Jovem, Mais Tempo</h1>
         <p style="color: red; font-size: 1rem;">Não nos responsabilizamos por quaisquer mortes que envolvam a “Pilula da Imortalidade”</p>
-    </header>
+    </nav>
     <main>
-        <h2>Bem-vindo ao Futuro da Longevidade</h2>
-        <p>Nossa pílula revolucionária é projetada para ajudá-lo a viver uma vida mais saudável e mais longa. Ao apoiar os sistemas metabólicos naturais do seu corpo, nossa pílula pode ajudá-lo a se sentir mais jovem, mais energético e mais vibrante do que nunca antes.</p>
-                     <img src="cartaz (3).png" alt="Cartaz Image">
-        <h2>Benefícios da Nossa Pílula da Imortalidade</h2>
-        <p>Nossa pílula foi formulada cientificamente para apoiar a capacidade natural do seu corpo de reparar o DNA, desintoxicar as células, produzir energia e manter a função proteica. Ao tomar nossa pílula diariamente, você pode experimentar benefícios como:</p>
-        <ul>
-            <li>Melhor funcionamento do sistema imunológico</li>
-            <li>Aumento da energia e da resistência</li>
-            <li>Melhor sono e relaxamento</li>
-            <li>Melhor alerta mental e tempo de reação</li>
-            <li>Risco reduzido em 50% de doenças comuns relacionadas à idade</li>
-            <li>E muito mais!</li>
-        </ul>
+        <section>
+            <h2>Bem-vindo ao Futuro da Longevidade</h2>
+            <p>Nossa pílula revolucionária é projetada para ajudá-lo a viver uma vida mais saudável e mais longa. Ao apoiar os sistemas metabólicos naturais do seu corpo, nossa pílula pode ajudá-lo a se sentir mais jovem, mais energético e mais vibrante do que nunca antes.</p>
+            <img src="pill-immortality-poster.png" alt="Cartaz Image">
+            <h2>Benefícios da Nossa Pílula da Imortalidade</h2>
+            <p>Nossa pílula foi formulada cientificamente para apoiar a capacidade natural do seu corpo de reparar o DNA, desintoxicar as células, produzir energia e manter a função proteica. Ao tomar nossa pílula diariamente, você pode experimentar benefícios como:</p>
+            <ul>
+                <li>Melhor funcionamento do sistema imunológico</li>
+                <li>Aumento da energia e da resistência</li>
+                <li>Melhor sono e relaxamento</li>
+                <li>Melhor alerta mental e tempo de reação</li>
+                <li>Risco reduzido em 50% de doenças comuns relacionadas à idade</li>
+                <li>E muito mais!</li>
+            </ul>
+        </section>
+        <div id="youtube-video">
+            <!-- YouTube video will be inserted here -->
+        </div>
     </main>
-    <footer>
+    <aside>
         <p>&copy; 2021 - Pílula da Imortalidade - Todos os direitos reservados</p>
-    </footer>
+    </aside>
+    <script>
+        // Get the YouTube video container
+        const youtubeVideoContainer = document.getElementById('youtube-video');
+
+        // Create the YouTube iframe
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube.com/embed/D4OCJL1vHys?autoplay=1';
+        iframe.frameBorder = '0';
+        iframe.allowFullScreen = true;
+
+        // Add the iframe to the container
+        youtubeVideoContainer.appendChild(iframe);
+
+        // Add an event listener to play the video when scrolled to
+        window.addEventListener('scroll', () => {
+            const videoTop = youtubeVideoContainer.offsetTop;
+            const videoHeight = youtubeVideoContainer.offsetHeight;
+            const windowHeight = window.innerHeight;
+            const scrollPosition = window.scrollY;
+
+            if (scrollPosition >= videoTop && scrollPosition<= videoTop + videoHeight - windowHeight) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo"}', '*');
+            }
+        });
+    </script>
 </body>
 </html>
