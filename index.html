@@ -175,7 +175,16 @@ var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 }
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY&callback=myMap"></script>
+    <script>
+  function initMap() {
+    const map = new google.maps.Map(document.getElementById("googleMap"), {
+      center: { lat: 37.772832, lng: -25.178574 },
+      zoom: 5,
+    });
+  }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_ACTUAL_API_KEY&callback=initMap"></script>
 
 </body>
 </html> 
